@@ -214,9 +214,193 @@
             color: #FF0000;
             font-size: 18px;
         }
+
+        /* Theme Selector */
+        .theme-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-selector h3 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .theme-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .theme-btn {
+            padding: 8px 12px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-btn.active {
+            border-color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Theme: Classic (Default) */
+        body.theme-classic {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Theme: Dark */
+        body.theme-dark {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body.theme-dark .calculator {
+            background: #2a2a3e;
+        }
+
+        body.theme-dark .title-bar {
+            background: linear-gradient(180deg, #3a3a4e 0%, #2a2a3e 100%);
+        }
+
+        body.theme-dark .title-text {
+            color: #fff;
+        }
+
+        body.theme-dark .display-container {
+            background: #2a2a3e;
+        }
+
+        body.theme-dark .expression-display,
+        body.theme-dark .display {
+            background: #1a1a2e;
+            border-color: #444;
+            color: #fff;
+        }
+
+        body.theme-dark .btn-digit {
+            background: #3a3a4e;
+            color: #fff;
+            border-color: #555;
+        }
+
+        body.theme-dark .btn-memory {
+            background: #4a4a5e;
+            color: #fff;
+        }
+
+        /* Theme: Ocean */
+        body.theme-ocean {
+            background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%);
+        }
+
+        body.theme-ocean .btn-operation {
+            background: #0093E9;
+        }
+
+        body.theme-ocean .btn-equals {
+            background: #006bb3;
+        }
+
+        body.theme-ocean .btn-special {
+            background: #b3e5fc;
+        }
+
+        body.theme-ocean .btn-clear {
+            background: #ffccbc;
+        }
+
+        /* Theme: Forest */
+        body.theme-forest {
+            background: linear-gradient(135deg, #134E5E 0%, #71B280 100%);
+        }
+
+        body.theme-forest .btn-operation {
+            background: #2e7d32;
+        }
+
+        body.theme-forest .btn-equals {
+            background: #1b5e20;
+        }
+
+        body.theme-forest .btn-special {
+            background: #c8e6c9;
+        }
+
+        body.theme-forest .btn-clear {
+            background: #ffccbc;
+        }
+
+        /* Theme: Sunset */
+        body.theme-sunset {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+        }
+
+        body.theme-sunset .btn-operation {
+            background: #FF6B6B;
+        }
+
+        body.theme-sunset .btn-equals {
+            background: #EE5A6F;
+        }
+
+        body.theme-sunset .btn-special {
+            background: #FFE66D;
+        }
+
+        body.theme-sunset .btn-clear {
+            background: #FFC6C6;
+        }
+
+        /* Theme: Purple */
+        body.theme-purple {
+            background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+        }
+
+        body.theme-purple .btn-operation {
+            background: #8E2DE2;
+        }
+
+        body.theme-purple .btn-equals {
+            background: #6A1BB2;
+        }
+
+        body.theme-purple .btn-special {
+            background: #E1BEE7;
+        }
+
+        body.theme-purple .btn-clear {
+            background: #F3E5F5;
+        }
     </style>
 </head>
-<body>
+<body class="theme-classic">
+    <!-- Theme Selector -->
+    <div class="theme-selector">
+        <h3>🎨 Выбор темы</h3>
+        <div class="theme-buttons">
+            <button class="theme-btn active" onclick="changeTheme('classic')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">Classic</button>
+            <button class="theme-btn" onclick="changeTheme('dark')" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white;">Dark</button>
+            <button class="theme-btn" onclick="changeTheme('ocean')" style="background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%); color: white;">Ocean</button>
+            <button class="theme-btn" onclick="changeTheme('forest')" style="background: linear-gradient(135deg, #134E5E 0%, #71B280 100%); color: white;">Forest</button>
+            <button class="theme-btn" onclick="changeTheme('sunset')" style="background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%); color: white;">Sunset</button>
+            <button class="theme-btn" onclick="changeTheme('purple')" style="background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%); color: white;">Purple</button>
+        </div>
+    </div>
+
     <div>
         <div class="calculator">
             <div class="title-bar">
@@ -723,6 +907,37 @@
 
         // Инициализация калькулятора
         const calculator = new Calculator();
+
+        // Theme Management
+        function changeTheme(themeName) {
+            // Remove all theme classes
+            document.body.className = '';
+            // Add new theme class
+            document.body.classList.add('theme-' + themeName);
+            
+            // Update active button
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Save theme preference
+            localStorage.setItem('calculatorTheme', themeName);
+        }
+
+        // Load saved theme on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('calculatorTheme') || 'classic';
+            document.body.classList.add('theme-' + savedTheme);
+            
+            // Update active button
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                const btnTheme = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+                if (btnTheme === savedTheme) {
+                    btn.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
