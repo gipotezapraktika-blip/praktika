@@ -1,0 +1,15 @@
+{
+  "name": "personal-calculator",
+  "version": "1.0.0",
+  "description": "Personal Calculator with high precision calculations",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.x"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
